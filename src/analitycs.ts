@@ -1,12 +1,11 @@
 import * as $ from 'jquery';
 
-function createAnalitycs() {
+function createAnalitycs(): object {
     let counter = 0;
-    let isDestroyed = false;
+    let isDestroyed: boolean = false;
 
-    const listerer = () => {
-        counter++;
-    }
+    const listerer = (): number => counter++;
+
     $(document).on('click', listerer);
 
     return {
@@ -20,4 +19,4 @@ function createAnalitycs() {
     }
 }
 
-window.analitycs = createAnalitycs();
+window['analitycs'] = createAnalitycs();

@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Raleway';
+    src: url(f745b86e2d3c3a774b2a1b432700aa70.ttf) format('truetype');
+}
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+main {
+    padding-top: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+.img-container {
+    background-image: url(8f2142a0feb48315bece82e640fa49de.jpg);
+    background-size: cover;
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.code {
+    color: goldenrod;
+}
+.box {
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  border: 1px solid red;
+}
+.box h2 {
+  text-align: center;
+  color: darkblue;
+}
+
+.card {
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  border: 1px solid black; }
+  .card h2 {
+    text-align: center;
+    color: salmon; }
+

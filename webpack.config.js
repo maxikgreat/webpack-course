@@ -29,12 +29,28 @@ const optimization = () => {
 
 const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
 
+const cssLoaders = extra => {
+    const loaders = [{
+        loader: MiniCssExtractPlugin.loader,
+        options: {
+            hmr: isDev,
+            reloadAll: true
+        }
+    }, 'css-loader'];
+
+    if(extra) {
+        loaders.push(extra);
+    }
+
+    return loaders;
+}
+
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: 'development',
     entry: {
-        main: './index.js',
-        analitycs: './analitycs.js'
+        main: ['@babel/polyfill', './index.js'],
+        analitycs: './analitycs.ts'
     },
     output: {
         filename: filename('js'),
@@ -75,13 +91,7 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: [{
-                    loader: MiniCssExtractPlugin.loader,
-                    options: {
-                        hmr: isDev,
-                        reloadAll: true
-                    }
-                }, 'css-loader']
+                use: cssLoaders()
             },
             {
                 test: /\.(png|jpe?g|svg|gif|)$/,
@@ -101,15 +111,43 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            hmr: isDev,
-                            reloadAll: true
-                        }
-                    }, 'css-loader', 'less-loader'
-                ]
+                use: cssLoaders('less-loader')
+            },
+            {
+                test: /\.s[ac]ss$/,
+                use: cssLoaders('sass-loader')
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            '@babel/preset-env'
+                        ],
+                        plugins: [
+                            '@babel/plugin-proposal-class-properties'
+                        ]
+                    }
+                }
+            },
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                loader: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            '@babel/preset-env',
+                            '@babel/preset-typescript'
+                        ],
+                        plugins: [
+                            '@babel/plugin-proposal-class-properties'
+                        ]
+
+                    }
+                }
             }
         ]
     }

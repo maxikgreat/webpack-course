@@ -6,6 +6,8 @@ import image from './assets/image.jpg';
 import xml from './assets/xml.xml';
 import csv from './assets/csv.csv';
 import './styles/less.less';
+import './styles/scss.scss';
+import './babel';
 
 const post = new Post('webpack post title', image);
 
