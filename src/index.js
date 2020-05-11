@@ -5,10 +5,11 @@ import json from './assets/json.json';
 import image from './assets/image.jpg';
 import xml from './assets/xml.xml';
 import csv from './assets/csv.csv';
+import './styles/less.less';
 
 const post = new Post('webpack post title', image);
 
-$('pre').html(post.toString());
+$('pre').addClass('code').html(post.toString());
 
 console.log(post.toString());
 
